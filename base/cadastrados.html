@@ -339,6 +339,12 @@
                           <td>josuelson123@gmail.com</td>
                           <td>34 <span>  Anos</span> </td>
                         </tr>
+                        <tr id="dados-cadastrais">
+                          <th scope="row">4</th>
+                          <td id="var-nome"></td>
+                          <td id="var-email"></a></td>
+                          <td id="var-idade">   Anos</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -1491,6 +1497,30 @@
     <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
     <script src="vendors/simplebar/js/simplebar.min.js"></script>
     <script>
+      
+
+     
+      var jubilauDoStorage = localStorage.getItem("jubilau")
+      var jubilauObjeto = JSON.parse(jubilauDoStorage);
+      if (jubilauDoStorage != null) {
+        
+      
+      document.getElementById("var-nome").innerHTML = jubilauObjeto[0].nome
+      document.getElementById("var-email").innerHTML = jubilauObjeto[0].email
+      document.getElementById("var-idade").innerHTML = jubilauObjeto[0].idade+" Anos"
+      } else { document.getElementById("dados-cadastrais").innerHTML = null
+
+      }
+
+        console.log(jubilauDoStorage)
+        console.log(jubilauObjeto)
+        
+        
+          
+        
+      
+ 
+      
     </script>
 
   </body>
