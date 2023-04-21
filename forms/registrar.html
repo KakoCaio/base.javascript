@@ -345,23 +345,23 @@
                     <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-719">
                       <div class="mb-3">
                         <label class="form-label" for="exampleFormControlInput1">Nome</label>
-                        <input  class="form-control" id="nome" name="nome" type="text" value=""
+                        <input class="form-control" id="nome" class="clear" name="nome" type="text" value=""
                           placeholder="Josismar Anastolfo">
 
                       </div>
                       <div class="mb-3">
                         <label class="form-label" for="exampleFormControlInput1">Email</label>
-                        <input class="form-control" id="email" name="email" type="email" value=""
+                        <input class="form-control" id="email" class="clear" name="email" type="email" value=""
                          placeholder="100%feio@cruzcredo.com">
 
                       </div>
                       <div class="mb-3">
                         <label class="form-label" for="exampleFormControlInput1">Idade</label>
-                        <input class="form-control" id="idade" type="number" name="idade" value="" placeholder="20 anos">
-                        <button class="btn btn-primary mb-3" type="submit"  style="margin-top: 5px;" id="btnEnviar"> enviar</button>
+                        <input class="form-control" id="idade" class="clear" type="number" name="idade" value="" placeholder="20 anos">
+                        
                       </div>
 
-
+                      <button class="btn btn-primary mb-3" type="button"  style="margin-top: 5px;" id="btnEnviar"> enviar</button>
                     </div>
                   </div>
                 </div>
@@ -384,6 +384,7 @@
     var btnEnviar = document.getElementById("btnEnviar");
     var jubilauDoStorage = localStorage.getItem("jubilau");
     var jubilauObjeto = JSON.parse(jubilauDoStorage);
+    
     //console.log(jubilauDoStorage)
    // console.log(jubilauObjeto)
     
@@ -395,7 +396,13 @@
 
     btnEnviar.addEventListener("click", function(event){
       event.preventDefault();
+      
      
+  
+      
+      
+    
+      
   
       var jubilauDoStorage = localStorage.getItem("jubilau");
       var jubilauObjeto = JSON.parse(jubilauDoStorage);  
@@ -409,7 +416,7 @@
         jubilauObjeto.push(dados)
         localStorage.setItem("jubilau",JSON.stringify(jubilauObjeto))
       }
-      
+      return nome.value ="", email.value = "", idade.value=""
 
        //  localStorage.setItem("jubilau", JSON.stringify(lista))
          
