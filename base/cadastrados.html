@@ -325,7 +325,7 @@
       <div class="container-lg">
         <div class="car"></div>
         <div class="card mb-4">
-          <div class="card-header"><strong>Cadastros</strong><span class="small ms-1">Ficha Básica</span></div>
+          <div class="card-header"><strong id="forte">Cadastros</strong><span class="small ms-1">Ficha Básica</span></div>
           <div class="card-body">
             <p class="text-medium-emphasis small">Using the most basic table markup, here’s how
               <code>.table</code>-based tables look in Bootstrap.</p>
@@ -350,34 +350,13 @@
                         <th scope="col">Nome</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">Idade</th>
+                        <th scope="col">A/C </th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr id="dados-cadastrais">
-                        <th scope="row">1</th>
-                        <td id="var-nome"></td>
-                        <td id="var-email"></a></td>
-                        <td id="var-idade"> Anos</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Crebsson</td>
-                        <td>crebin@gmail.com</td>
-                        <td>19 <span> Anos</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>januza</td>
-                        <td>janusaoliveira@bol.com.br</td>
-                        <td>59 <span> Anos</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Josuelson</td>
-                        <td>josuelson123@gmail.com</td>
-                        <td>34 <span> Anos</span> </td>
-                      </tr>
-
+                    <tbody id="corpo">
+                      
+                      
+                    
                     </tbody>
                   </table>
                 </div>
@@ -395,36 +374,67 @@
   <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="vendors/simplebar/js/simplebar.min.js"></script>
   <script>
-
-
+    document.getElementById("forte").innerText="<small>CADASTRO</small>"
+    /*document.getElementById("corpo").innerHTML+='<tr>'+
+                        '<th scope="row">1</th>'+
+                        '<td>Crebsson</td>'+
+                        '<td>crebin@gmail.com</td>'+
+                        '<td>19 <span> Anos</span></td>'+
+                      '</tr>'
+    console.log(document.getElementById("corpo").innerHTML)*/
 
     var jubilauDoStorage = localStorage.getItem("jubilau")
     var jubilauObjeto = JSON.parse(jubilauDoStorage);
-    if (jubilauDoStorage != null) {
+    /*if (jubilauDoStorage != null) {
 
 
-      document.getElementById("var-nome").innerHTML = jubilauObjeto.nome
+      document.getElementById("var-nome").innerHTML = jubilauObjeto[0].nome
       document.getElementById("var-email").innerHTML = jubilauObjeto.email
       document.getElementById("var-idade").innerHTML = jubilauObjeto.idade + " Anos"
     } else {
       document.getElementById("dados-cadastrais").innerHTML = null
 
-    }
+    }*/
 
-    
+
     //console.log(jubilauDoStorage)
     //console.log(jubilauObjeto)
 
 
-    for (let i = 0; i < jubilauObjeto.length; i++) {
+    /*for (let i = 0; i < jubilauObjeto.length; i++) {
       let cadastro = jubilauObjeto[i];
       console.log(cadastro)
+    }*/
+    preencherTabela()
+    function verificar(num){
+      jubilauObjeto = jubilauObjeto.filter(function(element,index){
+        if (index!=num){
+          return true
+        } else{
+          return false
+        }
+      })
+      localStorage.setItem("jubilau", JSON.stringify(jubilauObjeto))
+      preencherTabela()
+      console.log(jubilauObjeto)
+
     }
-    jubilauObjeto.forEach(function (element, index) {
-      console.log(element, index)
+
+    function preencherTabela(){
+      document.getElementById("corpo").innerHTML=""
+      jubilauObjeto.forEach(function (element, index) {
+      console.log(element)
+      document.getElementById("corpo").innerHTML+='<tr>'+
+                        '<th scope="row">'+ (index+1) +'</th>'+
+                        '<td>'+element.nome +'</td>'+
+                        '<td>'+ element.email +'</td>'+
+                        '<td>'+ element.idade +'<span> Anos</span></td>'+
+                        '<td><button onclick="verificar('+index+')" type="button" class="btn btn-secondary">click</button></td>'
+                      '</tr>'
 
     });
-
+    }
+     
 
 
   </script>
